@@ -59,8 +59,8 @@ QSAEM_COM_7 =  function(y,x,z,nj,p,precision=0.0001,MaxIter=300,M=20,pc=0.5,beta
     SAEM_DZb[[j]]  = array(data=0,dim=c(MaxIter+1,nj[j]))
   }
   
-  pb = tkProgressBar(title = "QRLMM via SAEM", min = 0,max = MaxIter, width = 300)
-  setTkProgressBar(pb, 0, label=paste("Iter ",0,"/",MaxIter,"     -     ",0,"% done",sep = ""))
+#  pb = tkProgressBar(title = "QRLMM via SAEM", min = 0,max = MaxIter, width = 300)
+#  setTkProgressBar(pb, 0, label=paste("Iter ",0,"/",MaxIter,"     -     ",0,"% done",sep = ""))
   
   while(critval < 3 && critval2 < 3)
   {
@@ -183,7 +183,7 @@ QSAEM_COM_7 =  function(y,x,z,nj,p,precision=0.0001,MaxIter=300,M=20,pc=0.5,beta
     #PRUEBAS
     #############################################################################
     tetam[,count] = teta
-    setTkProgressBar(pb, count, label=paste("Iter ",count,"/",MaxIter,"     -     ",round(count/MaxIter*100,0),"% done",sep = ""))
+ #   setTkProgressBar(pb, count, label=paste("Iter ",count,"/",MaxIter,"     -     ",round(count/MaxIter*100,0),"% done",sep = ""))
     
     if  (count == MaxIter){critval=10}
   }
@@ -203,18 +203,18 @@ QSAEM_COM_7 =  function(y,x,z,nj,p,precision=0.0001,MaxIter=300,M=20,pc=0.5,beta
   conv    = list(teta = tetam[,1:count],EPV = EPV[,1:count])
   obj.out = list(conv=conv,res = res)
   
-  if  (count == MaxIter)
-  {
-    setTkProgressBar(pb, MaxIter, label=paste("MaxIter reached ",count,"/",MaxIter,"    -    100 % done",sep = ""))
-    Sys.sleep(1)
-    close(pb)
-  }
-  else
-  {
-    setTkProgressBar(pb, MaxIter, label=paste("Convergence at Iter ",count,"/",MaxIter,"    -    100 % done",sep = ""))
-    Sys.sleep(1)
-    close(pb)
-  }
+#  if  (count == MaxIter)
+#  {
+#    setTkProgressBar(pb, MaxIter, label=paste("MaxIter reached ",count,"/",MaxIter,"    -    100 % done",sep = ""))
+#    Sys.sleep(1)
+#    close(pb)
+#  }
+#  else
+#  {
+#    setTkProgressBar(pb, MaxIter, label=paste("Convergence at Iter ",count,"/",MaxIter,"    -    100 % done",sep = ""))
+#    Sys.sleep(1)
+#    close(pb)
+#  }
   
   class(obj.out)  =  "QRLMM"
   return(obj.out)
