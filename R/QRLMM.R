@@ -182,11 +182,11 @@ QRLMM = function(y,x,z,groups,p=0.5,precision=0.0001,MaxIter=300,M=10,cp=0.25,be
     }
     
     #Load required libraries
-    pb2 = tkProgressBar(title = "QRLMM for several quantiles", min = 0,max = length(p), width = 300)
+    # pb2 = tkProgressBar(title = "QRLMM for several quantiles", min = 0,max = length(p), width = 300)
     
     for(k in 1:length(p))
     {
-      setTkProgressBar(pb2, k-1, label=paste("Running quantile ",p[k],"   -   ",k-1,"/",length(p),"   -   ",round((k-1)/length(p)*100,0),"% done",sep = ""))
+      # setTkProgressBar(pb2, k-1, label=paste("Running quantile ",p[k],"   -   ",k-1,"/",length(p),"   -   ",round((k-1)/length(p)*100,0),"% done",sep = ""))
       
       beta   = suppressWarnings(rq(y ~ -1 + x,tau = p[k]))$coefficients
       dif   = y - x%*%beta
@@ -251,7 +251,7 @@ QRLMM = function(y,x,z,groups,p=0.5,precision=0.0001,MaxIter=300,M=10,cp=0.25,be
       obj.outk = list(conv=out$conv,res = res)
       obj.out[[k]] = obj.outk
     }
-    close(pb2)
+   # close(pb2)
     
     par(mfrow=c(1,1))
     d=length(obj.out[[1]]$res$beta)
